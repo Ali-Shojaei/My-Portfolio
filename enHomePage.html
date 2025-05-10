@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Ali Shojaei - Laravel Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --black: #000000;
+            --gold: #FFD700;
+            --dark-gray: #1A1A1A;
+            --section-padding: 5rem 2rem;
+        }
+
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            direction: ltr;
+            text-align: left;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .language-select {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 1px solid var(--gold);
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 2.5rem;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFD700" height="20" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+        }
+
+        .language-select option {
+            background: var(--dark-gray);
+            padding: 0.5rem;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--section-padding);
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+
+        /* Home Section */
+        #home {
+            text-align: center;
+            background: linear-gradient(45deg, var(--black), var(--dark-gray));
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--dark-gray);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .about-content {
+            padding: 2rem;
+        }
+
+        .about-title {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .about-text {
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--gold);
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--black);
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .project-details {
+            padding: 2rem;
+        }
+
+        .project-title {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--dark-gray);
+        }
+
+        .skills-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .skill-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .laravel { color: #FF2D20; }
+        .php { color: #777BB4; }
+        .html { color: #E34F26; }
+        .css { color: #1572B6; }
+        .bootstrap { color: #7952B3; }
+        .tailwind { color: #06B6D4; }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: scale(1.1);
+        }
+
+        .phone-number {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 4rem 1rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .language-switcher {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <select class="language-select" id="languageSelect">
+            <option value="en" selected>
+                <img src="https://flagcdn.com/gb.svg" class="flag-icon"> English
+            </option>
+            <option value="fa">
+                <img src="https://flagcdn.com/ir.svg" class="flag-icon"> فارسی
+            </option>
+        </select>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="main-title">Ali Shojaei</h1>
+            <p class="subtitle">Full-Stack Laravel Developer</p>
+            <div style="margin-top: 3rem;">
+                <a href="#about" style="color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 0.8rem 2rem; border-radius: 5px; transition: 0.3s;">
+                    About Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <img src="Image/4About.png" alt="About Me" class="about-image">
+            <div class="about-content">
+                <h2 class="about-title">About Me</h2>
+                <p class="about-text">
+                    I'm Ali Shojaei, a Full-Stack developer specializing in Laravel. With over 1 year of experience in professional web application development, I'm passionate about solving complex problems and creating innovative solutions. My goal is to build high-quality products with excellent performance and outstanding user experience.
+                </p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Education</h4>
+                        <p>Student at Samen Technical School</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Main Expertise</h4>
+                        <p>Backend Development with Laravel</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Work Experience</h4>
+                        <p>1+ years of web development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="projects-container">
+            <h2 class="section-title">My Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="Image/tailoring.png" class="project-image" alt="Clothing Store">
+                    <div class="project-details">
+                        <h3 class="project-title">Clothing Store</h3>
+                        <p class="project-description">
+                            An advanced e-commerce system with features:<br>
+                            - Category and product management<br>
+                            - Wallet system and online payment<br>
+                            - Shopping cart and order management<br>
+                            - Advanced user account<br>
+                            - Admin panel for sellers<br>
+                            - CRM system for customer management
+                        </p>
+                        <a href="https://github.com/Ali-Shojaei/Clothing-store" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="Image/restaurant.png" class="project-image" alt="Restaurant Management">
+                    <div class="project-details">
+                        <h3 class="project-title">Restaurant Management System</h3>
+                        <p class="project-description">
+                            A comprehensive system for restaurants with:<br>
+                            - Menu and food category management<br>
+                            - Online ordering system<br>
+                            - Online payment<br>
+                            - Admin panel for restaurant owners<br>
+                            - CRM system for customer management
+                        </p>
+                        <a href="https://github.com/Ali-Shojaei/restaurant" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="Image/OnlineShop.png" class="project-image" alt="Online Shop">
+                    <div class="project-details">
+                        <h3 class="project-title">Online Shop</h3>
+                        <p class="project-description">
+                            A complete e-commerce platform with:<br>
+                            - Advanced CRM system<br>
+                            - User account with various features<br>
+                            - Electronic wallet<br>
+                            - Order tracking<br>
+                            - Product and category management<br>
+                            - Comprehensive admin panel
+                        </p>
+                        <a href="https://github.com/Ali-Shojaei/Online-Shop" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="skills-container">
+            <h2 class="section-title">Technologies I Use</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-laravel skill-icon laravel"></i>
+                    <h3>Laravel</h3>
+                    <p>Advanced PHP Framework</p>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fab fa-php skill-icon php"></i>
+                    <h3>PHP</h3>
+                    <p>Version 8.x and above</p>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fab fa-html5 skill-icon html"></i>
+                    <h3>HTML5</h3>
+                    <p>Professional page structure</p>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt skill-icon css"></i>
+                    <h3>CSS3</h3>
+                    <p>Advanced styling</p>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fab fa-bootstrap skill-icon bootstrap"></i>
+                    <h3>Bootstrap</h3>
+                    <p>Version 5.x</p>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fas fa-wind skill-icon tailwind"></i>
+                    <h3>Tailwind CSS</h3>
+                    <p>Utility-First Framework</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-info">
+            <h3 class="contact-title">Contact Me</h3>
+            
+            <div class="contact-links">
+                <a href="mailto:ali.shojaei0010@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> ali.shojaei0010@gmail.com
+                </a>
+                
+                <a href="https://github.com/Ali-Shojaei" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GitHub.com/Ali-Shojaei
+                </a>
+            </div>
+            
+            <div class="phone-number">
+                <i class="fas fa-phone"></i> +98 916 587 8570
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switcher
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            if(this.value === 'fa') {
+                window.location.href = 'index.html';
+            } else {
+                window.location.href = 'enHomePage.html';
+            }
+        });
+
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.project-card, .skill-item, .info-item');
+                
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            document.querySelectorAll('.project-card, .skill-item, .info-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+            
+            // Typewriter effect
+            const title = document.querySelector('.main-title');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>
